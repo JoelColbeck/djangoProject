@@ -5,8 +5,8 @@ class News(models.Model):
     content = models.TextField(blank=True, verbose_name='Контент')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фотография')
-    is_published = models.BooleanField(default=False, verbose_name='Опубликовано', blank=True)
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, verbose_name='Фотография')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
@@ -20,6 +20,9 @@ class News(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True, verbose_name='Наименование')
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Категория"
