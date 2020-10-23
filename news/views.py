@@ -4,7 +4,7 @@ from .models import News
 
 
 def index(request):
-    news = News.objects.order_by('-created_at').filter(is_published=True)
+    news = News.objects.filter(is_published=True)
     context = {
         'news': news,
         'title': 'Список новостей',
