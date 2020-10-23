@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-# Импортируем контроллер приложения
-# from news.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('news.urls')),
+    # Вложенный маршрут
+    path('', include('news.urls')),
 ]
